@@ -1,0 +1,68 @@
+h1 {
+    color: white;
+    text-align: center;
+    font-size: 70px;
+    font-family: Georgia;
+    font-weight: bold;
+}
+
+body{
+    background-color: black;
+}
+
+.box{
+    background-color: dimgray;
+    width: 100%;
+    height: 200px;
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button{
+    border: none; /*removes any visible border around element*/
+    color: white; /*sets text colour as white*/
+    padding: 16px 32px; /*adds space inside of the button to make it larger and easier to click*/
+    text-decoration: none; /*removes anything like underlines*/
+    display: block; /*turn it into a block to make it easier to centre and manipulate as it takes up its own space*/
+    font-size: 25px; /*sets font size*/
+    margin: 4px 2px; /*adds sapce outside the element*/
+    transition-duration: 0.4s; /**/
+    cursor: pointer; /*changes mouse pointer into hand icon to show its clickable*/
+    background-color: darkgray; /*changes background colour to dark grey */
+    font-family: Georgia;
+}
+
+.button:hover {
+  background-color: whitesmoke;
+  color: rgb(0, 217, 255);
+}
+
+.button1{
+    width: 400px;
+    height: 150px;
+    border-radius: 10px;
+    margin: 0 auto; /*centres the button horizontally*/
+    margin-top: 100px;
+    font-size: 60px;
+    
+}
+
+.button2{
+    border-radius: 10px;
+    margin: 0 auto; /*centres the button horizontally*/
+    margin-top: 100px;
+    font-size: 60px;
+}
+
+#textToToggle{
+    color: white;
+    font-family: Georgia;
+    font-size: 55px;
+    text-align: center;
+    margin: 4px;
+    padding: 20px;
+    display: none;
+}
