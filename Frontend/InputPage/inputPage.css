@@ -4,4 +4,23 @@ body{
 
 h1{
     color: white;
+    text-align: center;
+    font-size: 90px;
+    font-family: Georgia;
+    font-weight: bold;
+    margin-top: 150px;
+}
+
+.button{
+    border: none; 
+    color: white; 
+    padding: 16px 32px; 
+    text-decoration: none; 
+    display: inline; 
+    font-size: 25px; 
+    margin: 4px 2px; 
+    transition-duration: 0.4s;
+    cursor: pointer; 
+    background-color: darkgray; 
+    font-family: Georgia;
 }
