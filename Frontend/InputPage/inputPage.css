@@ -24,3 +24,8 @@ h1{
     background-color: darkgray; 
     font-family: Georgia;
 }
+
+.custom-file-upload{
+    display: inline-block;
+    color: white;
+}
