@@ -1,4 +1,4 @@
-const divContainer = document.querySelector("#textToToggle"); //assigning the html div into this div container to manipulate it
+const divContainer = document.querySelector("#text-to-toggle"); //assigning the html div into this div container to manipulate it
 let isClicked = true;
 
 let toggleDisplay = function(){
