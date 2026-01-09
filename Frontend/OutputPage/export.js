@@ -28,7 +28,8 @@ async function copyToClipBoard(){
 //export as a pdf
 function txtToPDF(){
     const doc = new window.jspdf.jsPDF();
-    doc.text(`${textArea.textContent}`, 10, 10);
+    const lines = doc.splitTextToSize(textArea.textContent, 180);
+    doc.text(lines, 10, 10);
     doc.save(`${fileName.value}.pdf`);
 }
 
