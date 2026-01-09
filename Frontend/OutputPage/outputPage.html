@@ -16,7 +16,7 @@
         
         <div class="export-buttons-container">
         <button class="button copyB" id="copyB" onclick="copyToClipBoard()" title="Copy to clipboard">📋 Copy</button>
-        <button class="button docxB" id="docxB" title="Export as Word (.docx)">📄 Export .docx</button>
+        <button class="button docxB" id="docxB" onclick="txtToDocx()" title="Export as Word (.docx)">📄 Export .docx</button>
         <button class="button pdfB" id="pdfB" onclick="txtToPDF()" title="Export to PDF (opens print dialog)">🖨️ Export PDF</button>
         <button class="button txtFileB" id="txtB" onclick="exportAsTxt()" title="Download as .txt">📥 Download .txt</button>
         </div>
@@ -26,7 +26,8 @@
         <div id="error-message"></div>
         <button id="returnButton" onclick="window.location.href='/Frontend/HomePage/homePage.html'">Return to Home</button>
     </main>
-    <script src="lib/jspdf.umd.min.js"></script> <!--Importing JS to PDF library-->
+    <script src="lib/jspdf.umd.min.js"></script> <!--Importing JS to PDF locally stored library-->
+    <script src="https://unpkg.com/docx@7.1.0/build/index.js"></script> <!--Importing JS to Word library-->
     <script src="export.js"></script>
   </body>
 </html>

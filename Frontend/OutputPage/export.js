@@ -23,6 +23,32 @@ async function copyToClipBoard(){
 }
 
 //export as a word docx
+function txtToDocx() {
+  console.log("BUTTON CLICKED")
+  const doc = new docx.Document({
+    sections: [
+      {
+        properties: {},
+        children: [
+          new docx.Paragraph({
+            children: [
+              new docx.TextRun(textArea.textContent),
+            ]
+          })
+        ]
+      }
+    ]
+  });
+
+  docx.Packer.toBlob(doc).then((blob) => {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);   
+    link.download = `${fileName.value}.docx`;      
+    link.click();                            
+    URL.revokeObjectURL(link.href);          
+    console.log("Document created and downloaded!");
+  });
+}
 
 
 //export as a pdf
