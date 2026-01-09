@@ -86,11 +86,21 @@ h1{
 }
 
 #file-preview img {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 4px;
-  margin: 0 500px;
+  margin: 0 300px;
+}
+
+#file-preview span{
+  /*for the image text displayed below the text*/
+  font-family: Georgia;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #error-message {
