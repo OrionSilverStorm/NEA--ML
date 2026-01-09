@@ -17,6 +17,22 @@ textarea{
     margin-bottom: 25px;
 }
 
+#exportFileName{
+    margin: 0 auto;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+label{
+    margin-top: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
 .export-buttons-container{
     display: flex;
     align-items: center;

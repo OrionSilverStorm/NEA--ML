@@ -17,14 +17,16 @@
         <div class="export-buttons-container">
         <button class="button copyB" id="copyB" onclick="copyToClipBoard()" title="Copy to clipboard">📋 Copy</button>
         <button class="button docxB" id="docxB" title="Export as Word (.docx)">📄 Export .docx</button>
-        <button class="button pdfB" id="pdfB" title="Export to PDF (opens print dialog)">🖨️ Export PDF</button>
-        <button class="button txtFileB" id="txtB" title="Download as .txt">📥 Download .txt</button>
+        <button class="button pdfB" id="pdfB" onclick="txtToPDF()" title="Export to PDF (opens print dialog)">🖨️ Export PDF</button>
+        <button class="button txtFileB" id="txtB" onclick="exportAsTxt()" title="Download as .txt">📥 Download .txt</button>
         </div>
 
+        <label for="exportFileName">File Name: </label>        
         <input type="text" id="exportFileName">
         <div id="error-message"></div>
         <button id="returnButton" onclick="window.location.href='/Frontend/HomePage/homePage.html'">Return to Home</button>
     </main>
+    <script src="lib/jspdf.umd.min.js"></script> <!--Importing JS to PDF library-->
     <script src="export.js"></script>
   </body>
 </html>
