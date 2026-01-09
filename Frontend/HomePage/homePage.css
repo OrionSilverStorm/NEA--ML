@@ -26,12 +26,12 @@ body{
     color: white; /*sets text colour as white*/
     padding: 16px 32px; /*adds space inside of the button to make it larger and easier to click*/
     text-decoration: none; /*removes anything like underlines*/
-    display: block; /*turn it into a block to make it easier to centre and manipulate as it takes up its own space*/
+    display: block; /*turn it into a block to make it easier to centre and manipulate as it takes up its own horizontal space*/
     font-size: 25px; /*sets font size*/
     margin: 4px 2px; /*adds sapce outside the element*/
-    transition-duration: 0.4s; /**/
+    transition-duration: 0.4s; /*sets the transition dration when hovering*/
     cursor: pointer; /*changes mouse pointer into hand icon to show its clickable*/
-    background-color: darkgray; /*changes background colour to dark grey */
+    background-color: darkgray; /*changes background colour of the button to dark grey*/
     font-family: Georgia;
 }
 
@@ -40,7 +40,7 @@ body{
   color: rgb(0, 217, 255);
 }
 
-.button1{
+.startButton{
     width: 400px;
     height: 150px;
     border-radius: 10px;
@@ -50,7 +50,7 @@ body{
     
 }
 
-.button2{
+.instructionsButton{
     border-radius: 10px;
     margin: 0 auto; /*centres the button horizontally*/
     margin-top: 100px;
