@@ -16,6 +16,7 @@ body{
     height: 200px;
     border: none;
 
+    /*Creates a flex box and centres it*/
     display: flex;
     align-items: center;
     justify-content: center;
