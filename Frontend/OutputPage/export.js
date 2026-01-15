@@ -18,6 +18,7 @@ async function copyToClipBoard(){
         await navigator.clipboard.writeText(textArea.textContent);
         console.log(textArea.textContent);
     } catch (err){
+        textArea.textContent = err
         console.error("Failed to copy: ", err);
     }
 }
