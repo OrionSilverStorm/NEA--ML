@@ -37,21 +37,23 @@ h1{
 }
 
 .file-upload{
-  position: relative;
   width: 50%;
   font-family: Georgia;
   font-size: 25px;
   display: block;
   padding: 20px;
-  border: 2px dashed #ccc;
+  border: 2px dashed white;
   border-radius: 8px;
   transition: border-color 0.3s;
+  gap: 15px;
 
+
+  /*To centre elements in the div*/
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
 
+  /*To centre the div itself*/
   margin: 0 auto;
 }
 
