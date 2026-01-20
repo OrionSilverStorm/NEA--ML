@@ -52,7 +52,7 @@ async function HandleFiles(files) {
 //validates files before adding them to the file stack
 async function ValidateFile(file) {
   const validTypes = ['image/jpeg', 'image/png', 'image/gif'];  //set of acceptable image types
-  const maxSize = 1 * 1024 * 1024 //5 MB limit in bytes
+  const maxSize = 5 * 1024 * 1024 //5 MB limit in bytes
   const isVaild = true; //base bool so that if nothing is wrong it simply returns true
 
   //checks file type
@@ -98,8 +98,7 @@ function ShowError(message) {
 
 //checks if the file stack is empty before upload, if so returns an error message so the website doesnt process an empty set of files
 function ValidatePresence() {
-  if (fileStack.length === 0) {
+  if (fileStack.length == 0) {
     ShowError('Please select the files to upload');
-    return;
   }
 }
