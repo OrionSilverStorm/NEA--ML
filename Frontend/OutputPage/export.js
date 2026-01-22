@@ -53,10 +53,10 @@ function txtToDocx() {
 
 //export as a pdf
 function txtToPDF(){
-    const doc = new window.jspdf.jsPDF();
-    const lines = doc.splitTextToSize(textArea.textContent, 180);
-    doc.text(lines, 10, 10);
-    doc.save(`${fileName.value}.pdf`);
+    const doc = new window.jspdf.jsPDF(); //creates a new PDF document
+    const lines = doc.splitTextToSize(textArea.textContent, 180); //split the doc into lines, each line is 180 units long (basic PDF size), so each line is split by 180 units
+    doc.text(lines, 10, 10);  //add the text to the doc at position 10,10 - so at the top left corner of the PDF
+    doc.save(`${fileName.value}.pdf`);  //define PDF name
 }
 
 //export as a .txt file
