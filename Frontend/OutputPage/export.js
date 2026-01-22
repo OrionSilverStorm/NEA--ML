@@ -1,10 +1,9 @@
 const textArea = document.getElementById("textToExport");
-const fileName = document.getElementById("exportFileName")
 const copyButton = document.getElementById("copyB");
 const docButton = document.getElementById("docxB");
 const pdfButton = document.getElementById("pdfB");
 const txtButton = document.getElementById("txtB");
-
+const fileName = document.getElementById("exportFileName")
 
 //when user updates the text area it updates the content text
 textArea.addEventListener("input", (e) => {
@@ -62,7 +61,6 @@ function txtToPDF(){
 
 //export as a .txt file
 const exportAsTxt = () =>{  //use arrow func as we want to "return" the file to the user implicitly, instead of utright returning it
-    console.log("yes");
     const link = document.createElement("a");   //create HTML link element which will be attached to the button
     const file = new Blob([textArea.textContent], {type: "text/plain"}); //get text and add it to the plain-text blob (file like object to represent data not native to js like text files)
     link.href = URL.createObjectURL(file);  //add the blog to the href attribute of the link, by creating a URL link that points to a given file (blob in this acse)
