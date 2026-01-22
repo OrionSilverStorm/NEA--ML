@@ -13,13 +13,16 @@
     <main>
         <h1>Upload Image</h1>
 
-        <div class="file-upload" id="drop-zone">
-          <input id="fileInput" type="file" accept="image/*" multiple/>
-          <label for="fileInput">Select Images or Drag & Drop</label>
-          <div id="file-preview"></div>
-          <div id="progress-bar"></div>
+        <div class="file-upload" id="drop-zone"> <!--Overall div for the file-upload section-->
+          <input id="fileInput" type="file" accept="image/*" multiple/> <!--Creates the input form, for multiple image files-->
+          <label for="fileInput">Select Images or Drag & Drop</label> <!--Creates a caption for the file input-->
+          <div id="file-preview"></div> <!--Creates a DIV where I can append all the file previews-->
           <div id="error-message"></div> <!--Creates a DIV where I can display error messages-->
         </div>
+
+        <div id="progress-bar"></div> <!--Creates a DIV where I can manipulate a progress bar-->
+
+
         <button id="uploadButton" onclick="window.location.href='/Frontend/OutputPage/outputPage.html'">Upload ⇪</button>
 
 

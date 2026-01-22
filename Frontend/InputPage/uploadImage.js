@@ -1,9 +1,9 @@
 // creates variables for all the html elements so I can manipulate them
+const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('fileInput');
 const preview = document.getElementById('file-preview');
-const uploadButton = document.getElementById('uploadButton');
-const dropZone = document.getElementById('drop-zone');
 const errorMessages = document.getElementById('error-message');
+const uploadButton = document.getElementById('uploadButton');
 
 let fileStack = [];
 
@@ -20,67 +20,68 @@ dropZone.addEventListener('dragleave', () => {
 dropZone.addEventListener('drop', async (e) => { //when item is dropped it will execute, it is async so the rest of the website works asynschrously while the file is being uploaded, e is the event object
   e.preventDefault(); //prevents the broswer from accidently opening the file 
   dropZone.classList.remove('dragover'); //removes the dragover class property as the user has dragged and dropped the file
-  await handleFiles(Array.from(e.dataTransfer.files)); // calls the dropped files, converts it into a js array and sends it to handleFiles func, await makes it so that everything waits for the file upload to finish before executing anything else
+  await HandleFiles(Array.from(e.dataTransfer.files)); // calls the dropped files, converts it into a js array and sends it to HandleFiles func, await makes it so that everything waits for the file upload to finish before executing anything else
 })
 
 //when user uses file picker
 fileInput.addEventListener('change', async (e) => { 
-  await handleFiles(Array.from(e.target.files)); //same logic from drog and drop, but when it uses file picker
+  await HandleFiles(Array.from(e.target.files)); //same logic from drog and drop, but when it uses file picker
 })
 
-uploadButton.addEventListener('click', validatePresence); //assigns the upload button the validatePresence function on click, so if no file is selected, it shows an error
+uploadButton.addEventListener('click', ValidatePresence); //assigns the upload button the validatePresence function on click, so if no file is selected, it shows an error
 
 //handles the file preprocessing and preview
-async function handleFiles(files) {
+async function HandleFiles(files) {
+  //preproccess
   preview.innerHTML = ''; //resets any previous html preview content
   errorMessages.innerHTML = ''; //resets any previous error messages
-  fileStack = []; //reset current files
+  fileStack = []; //reset current file stack to avoid confusion with previous attempts
 
-  for (const file of files) { //loop through every file in the file array
-    const isValid = await validateFile(file); //bool isVaild calls function that will validate files
+  //Validate, append & induce preview
+  for (const file of files) { //loop through every file in the file array inputed to the function 
+    const isValid = await ValidateFile(file); //bool isVaild is the result of called function that will validate files, use await since we want this to be finsihed before moving on
     if (isValid) {
-      fileStack.push(file); //appends it into the selected files stack
-      const reader = new FileReader(); //lets the script read the contents of the file
-      reader.onload = (e) => createPreview(e.target.result, file.name); //when file reader finsihes, callback func creates preview with the data url and filename
+      fileStack.push(file); //appends it into the files stack
+      const reader = new FileReader(); //lets the script read the contents of the file to get the preview
+      reader.onload = (e) => CreatePreview(e.target.result, file.name); //when file reader finsihes, callback func creates preview with the data url and filename
       reader.readAsDataURL(file); //start reading the file as a data url, which lets it access the file type, encoding and actual file data, this kick starts reader.onload
     }
   }
 }
 
 //validates files before adding them to the file stack
-async function validateFile(file) {
+async function ValidateFile(file) {
   const validTypes = ['image/jpeg', 'image/png', 'image/gif'];  //set of acceptable image types
-  const maxSize = 5 * 1024 * 1024 //5 MB limit
+  const maxSize = 5 * 1024 * 1024 //5 MB limit in bytes
   const isVaild = true; //base bool so that if nothing is wrong it simply returns true
 
   //checks file type
   if (!validTypes.includes(file.type)) {
-    showError(`${file.name} is not a valid file type`);
+    ShowError(`${file.name} is not a valid file type`);
     isVaild = false;
   }
 
   //checks file size
   if (file.size > maxSize) {
-    showError(`${file.name} too large, exceeds the 5MB limit`);
+    ShowError(`${file.name} is too large and exceeds the 5MB limit`);
     isVaild = false;
   }
 
   //returns if valid or not
   return isVaild;
-
 }
 
 //creates preview
-function createPreview(source, id) {
-  const container = document.createElement('div'); //creates the actual div container where the preview will be
-  container.className = 'preview-item'; //adds the preview-item to the container
+function CreatePreview(source, id) {
+  const container = document.createElement('div'); //creates the actual div container where the preview will be shown
+  container.className = 'preview-item'; //name the div class preview item, as it only stores a single preview item
 
   const img = document.createElement('img');  //creates an image 
-  img.src = source; //here is its source - actual content
-  img.alt = id; //here is its name or identifer
+  img.src = source; //it sets the img source equal to the inputted image URL, so that when its appended to the html it knowns what the image actually is
+  img.alt = id; //if the image cant be shown for some reason the id acts as the alt text thats shown if that occurs
 
-  const fileName = document.createElement('span'); //create span for the lable 
-  fileName.textContent = id;  //displays image name
+  const fileName = document.createElement('span'); //create span for the lable of the image
+  fileName.textContent = id;  //displays image name by setting the span equal to the image id
 
   //append img and span to the container and then append the container as a child to preview (actual html element) so it can be displayed
   container.appendChild(img);
@@ -89,16 +90,15 @@ function createPreview(source, id) {
 }
 
 //shows error message
-function showError(message) {
+function ShowError(message) {
   const error = document.createElement('div');  //creates div container to contain the error
   error.textContent = message;  //the error message equals the given parameter
   errorMessages.appendChild(error); //appends error as a child into the actual error messages element in the html
 }
 
 //checks if the file stack is empty before upload, if so returns an error message so the website doesnt process an empty set of files
-function validatePresence() {
-  if (fileStack.length === 0) {
-    showError('Please select the files to upload');
-    return;
+function ValidatePresence() {
+  if (fileStack.length == 0) {
+    ShowError('Please select the files to upload');
   }
 }

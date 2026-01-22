@@ -37,26 +37,28 @@ h1{
 }
 
 .file-upload{
-  position: relative;
   width: 50%;
   font-family: Georgia;
   font-size: 25px;
   display: block;
   padding: 20px;
-  border: 2px dashed #ccc;
+  border: 2px dashed white;
   border-radius: 8px;
   transition: border-color 0.3s;
+  gap: 15px;
 
+
+  /*To centre elements in the div*/
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
 
+  /*To centre the div itself*/
   margin: 0 auto;
 }
 
 .file-upload.dragover {
-  border-color: #007bff;
+  border-color: rgb(96, 96, 244);
   background-color: rgba(0, 123, 255, 0.1);
 }
 
@@ -67,15 +69,15 @@ h1{
 .file-upload label {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: rgb(96, 96, 244);
+  color: white;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
 .file-upload label:hover {
-  background-color: #0056b3;
+  background-color: blue;
 }
 
 #file-preview {
@@ -90,7 +92,7 @@ h1{
   height: 200px;
   object-fit: cover;
   border-radius: 4px;
-  margin: 0 300px;
+  margin: 0 500px;
 }
 
 #file-preview span{
@@ -105,15 +107,15 @@ h1{
 
 #error-message {
   display: block;
-  color: #dc3545;
+  color: red;
   margin-top: 10px;
 }
 
 #uploadButton {
   display: block;
   padding: 20px 40px;
-  background-color: #28a745;
-  color: #fff;
+  background-color: green;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -125,5 +127,5 @@ h1{
 }
 
 #uploadButton:hover {
-  background-color: #218838;
+  background-color: darkgreen;
 }

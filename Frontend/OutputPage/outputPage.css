@@ -7,6 +7,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Georgia;
 }
 
 textarea{
@@ -16,6 +17,38 @@ textarea{
     margin: 0 auto;
     margin-bottom: 25px;
     font-family: Georgia;
+}
+
+.export-buttons-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button{
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family: Georgia;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.copyB:hover{
+    background-color: blueviolet;
+}
+
+.docxB:hover{
+    background-color: blue;
+}
+
+.pdfB:hover{
+    background-color: red;
+}
+
+.txtFileB:hover{
+    background-color: yellow;
 }
 
 #exportFileName{
@@ -29,70 +62,15 @@ textarea{
 label{
     margin-top: 20px;
     color: white;
+    font-family: Georgia;
     display: flex;
     align-items: center;
     justify-content: center; 
 }
 
-.export-buttons-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.button{
-    transition-duration: 0.4s;
-    cursor: pointer;
-    font-family: Georgia;
-}
-
-.copyB{
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-
-.copyB:hover{
-    background-color: blueviolet;
-}
-
-.docxB{
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-
-.docxB:hover{
-    background-color: blue;
-}
-
-.pdfB{
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-
-.pdfB:hover{
-    background-color: red;
-}
-
-.txtFileB{
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    margin-right: 20px;
-}
-
-.txtFileB:hover{
-    background-color: yellow;
-}
-
 #returnButton{
     width: 250px;
-    height: 100px;
+    height: 80px;
     border-radius: 15px;
     display: block;
     margin: 0 auto;
