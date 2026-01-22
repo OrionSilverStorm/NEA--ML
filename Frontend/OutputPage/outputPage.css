@@ -67,3 +67,21 @@ label{
     align-items: center;
     justify-content: center; 
 }
+
+#returnButton{
+    width: 250px;
+    height: 80px;
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+    background-color: darkgray;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    font-family: Georgia;
+}
+
+#returnButton:hover{
+    background-color: whitesmoke;
+    color: rgb(0, 217, 255);
+}
