@@ -12,7 +12,7 @@ textArea.addEventListener("input", (e) => {
 })
 
 //Copy to clickboard
-async function copyToClipBoard(){
+async function CopyToClipBoard(){
     try{
         await navigator.clipboard.writeText(textArea.textContent);
         console.log(textArea.textContent);
@@ -23,7 +23,7 @@ async function copyToClipBoard(){
 }
 
 //export as a word docx
-function txtToDocx() {
+function TxtToDocx() {
   console.log("BUTTON CLICKED") //check if the button is linked to the func
   const doc = new docx.Document({ //create a new word document
     sections: [ //specficy the doc attributes
@@ -52,7 +52,7 @@ function txtToDocx() {
 
 
 //export as a pdf
-function txtToPDF(){
+function TxtToPDF(){
     const doc = new window.jspdf.jsPDF(); //creates a new PDF document
     const lines = doc.splitTextToSize(textArea.textContent, 180); //split the doc into lines, each line is 180 units long (basic PDF size), so each line is split by 180 units
     doc.text(lines, 10, 10);  //add the text to the doc at position 10,10 - so at the top left corner of the PDF
@@ -60,7 +60,7 @@ function txtToPDF(){
 }
 
 //export as a .txt file
-const exportAsTxt = () =>{  //use arrow func as we want to "return" the file to the user implicitly, instead of utright returning it
+const ExportAsTxt = () =>{  //use arrow func as we want to "return" the file to the user implicitly, instead of utright returning it
     const link = document.createElement("a");   //create HTML link element which will be attached to the button
     const file = new Blob([textArea.textContent], {type: "text/plain"}); //get text and add it to the plain-text blob (file like object to represent data not native to js like text files)
     link.href = URL.createObjectURL(file);  //add the blog to the href attribute of the link, by creating a URL link that points to a given file (blob in this acse)
