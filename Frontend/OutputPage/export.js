@@ -24,15 +24,15 @@ async function copyToClipBoard(){
 
 //export as a word docx
 function txtToDocx() {
-  console.log("BUTTON CLICKED")
-  const doc = new docx.Document({
-    sections: [
+  console.log("BUTTON CLICKED") //check if the button is linked to the func
+  const doc = new docx.Document({ //create a new word document
+    sections: [ //specficy the doc attributes
       {
-        properties: {},
-        children: [
-          new docx.Paragraph({
+        properties: {}, //no additional properties needed for our needs
+        children: [ 
+          new docx.Paragraph({  //create a new paragraph element thats a child of the overal document 
             children: [
-              new docx.TextRun(textArea.textContent),
+              new docx.TextRun(textArea.textContent), //then append the actual text content as a child of the paragrapgh
             ]
           })
         ]
@@ -40,13 +40,13 @@ function txtToDocx() {
     ]
   });
 
-  docx.Packer.toBlob(doc).then((blob) => {
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);   
-    link.download = `${fileName.value}.docx`;      
-    link.click();                            
-    URL.revokeObjectURL(link.href);          
-    console.log("Document created and downloaded!");
+  docx.Packer.toBlob(doc).then((blob) => {  //use the docx packer to create a doc blob to store the doc file so it can then be downloaded 
+    const link = document.createElement("a"); //create a new link element
+    link.href = URL.createObjectURL(blob);   //convert the document blob into a link that will point to the downloadable docx file
+    link.download = `${fileName.value}.docx`; //set the document name to tell broswer its downloadable
+    link.click();   //to save file on local computer
+    URL.revokeObjectURL(link.href);   //to reset the button for a new text content
+    console.log("Document created and downloaded!");  //debug to check if the blobification actually ocurs
   });
 }
 
