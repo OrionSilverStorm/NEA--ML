@@ -7,3 +7,10 @@ Use FASTAPI as the backend server
 3. call inference func, infer images
 4. return the infered text back to the frontend
 '''
+from fastapi import FastAPI, UploadFile
+
+app = FastAPI()
+
+@app.post("/uploadfile/")
+async def CreateUploadFile(file: UploadFile):
+    return {"filename": file.filename}
