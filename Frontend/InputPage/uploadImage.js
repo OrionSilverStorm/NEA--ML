@@ -102,3 +102,13 @@ function ValidatePresence() {
     ShowError('Please select the files to upload');
   }
 }
+
+async function uploadFiles() {
+  if (fileStack.length != 0){
+    for (const file of fileStack){
+      const form = new FormData();
+      form.append("file_uploads", file); 
+      await axios.post("http://localhost:8000/uploadfile/", form);
+    }
+  }
+}

@@ -12,12 +12,23 @@ Use FASTAPI as the backend server
 from fastapi import FastAPI, UploadFile
 #to store files in the server
 from pathlib import Path
+#middleware for different port communication
+from fastapi.middleware.cors import CORSMiddleware
 
 #const has the directory that the uplaoded file will go
 UPLOAD_DIR = Path() / 'uploads'
 
 
 app = FastAPI() #instantiate the fast api object
+
+#allowed middle ware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],    #for simplicity allow any origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #decorator to use the HTTP POST protocol into the defined path in the param
 @app.post("/uploadfile/")
