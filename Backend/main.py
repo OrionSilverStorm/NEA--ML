@@ -41,6 +41,10 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
             with open(save_to, 'wb') as f: #write to the files bytes
                 f.write(data)   #write the read data, so we have completley stored this file in our backend
                 counter += 1
+
+        #img preproccess
+
+        #inferenece
     except Exception as e:
         return {f"{e} + {file_upload.filename} + {counter}"}
     return {"filenames": [f.filename for f in file_uploads],
