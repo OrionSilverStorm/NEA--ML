@@ -68,3 +68,8 @@ const ExportAsTxt = () =>{  //use arrow func as we want to "return" the file to 
     link.click();   //so that the file is saved on the local computer
     URL.revokeObjectURL(link.href); //remove the file link at the end to reset the downloadable text file, ready for the next time they edit the editiable text field
 }
+
+/////////////////////////////////////////////
+const response = await fetch("http://127.0.0.1:8000/returnfile");
+const text = await response.text();
+textArea.textContent = text;

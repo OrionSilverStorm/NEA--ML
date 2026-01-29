@@ -20,6 +20,7 @@ from img_preproccessing import IMG_Preproccess
 #const has the directory that the uplaoded file will go
 UPLOAD_DIR = Path().cwd() / 'uploads'
 
+proccessedText = 'yeet' ##################
 
 app = FastAPI() #instantiate the fast api object
 
@@ -51,3 +52,8 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
         return {f"{e} + {file_upload.filename} + {counter}"}
     return {"filenames": [f.filename for f in file_uploads],
             "Additional":[f"{save_to} + {file_upload.filename} + {counter}"]}   #returns a list of file names of all uploaded files
+
+#######################################
+@app.get("/returnfile/")
+async def Return_text():
+    return proccessedText
