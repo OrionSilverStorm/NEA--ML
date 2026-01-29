@@ -19,5 +19,3 @@ def IMG_Preproccess(filePath):
     threshImg = cv2.adaptiveThreshold(blurImg, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 31, 10)
 
     cv2.imwrite(filePath, threshImg)
-
-IMG_Preproccess(r'C:\Users\Shiven Kothari\Desktop\Shiven\Coding stuff\NEA -ML\Backend\uploads\y1.png')
