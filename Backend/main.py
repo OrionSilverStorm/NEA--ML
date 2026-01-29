@@ -14,6 +14,8 @@ from fastapi import FastAPI, UploadFile
 from pathlib import Path
 #middleware for different port communication
 from fastapi.middleware.cors import CORSMiddleware
+#img preproccess set up
+from img_preproccessing import IMG_Preproccess
 
 #const has the directory that the uplaoded file will go
 UPLOAD_DIR = Path().cwd() / 'uploads'
@@ -41,10 +43,10 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
             with open(save_to, 'wb') as f: #write to the files bytes
                 f.write(data)   #write the read data, so we have completley stored this file in our backend
                 counter += 1
+            #img preproccess
+            IMG_Preproccess(save_to)
 
-        #img preproccess
-
-        #inferenece
+            #inferenece
     except Exception as e:
         return {f"{e} + {file_upload.filename} + {counter}"}
     return {"filenames": [f.filename for f in file_uploads],

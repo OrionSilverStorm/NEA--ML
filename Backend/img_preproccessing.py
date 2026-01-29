@@ -1,6 +1,4 @@
 import cv2
-from pathlib import Path
-
 
 #init image
 #Greyscale img
@@ -8,22 +6,18 @@ from pathlib import Path
 #Normalise the image
 
 def IMG_Preproccess(filePath):
-    #load the image
+    #load the imagez``
     img = cv2.imread(filePath)
 
     #greyscale it
     greyImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    #apply otsu thresholding algorithm 
-    threshImg = cv2.threshold(greyImg, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
-
-    #use distance transform to focus on the words
-    distImg = cv2.distanceTransform(threshImg, cv2.DIST_L2, 5)
+    #apply gaussian blur to handle bad strokes to make everything look uniform
+    blurImg = cv2.GaussianBlur(greyImg, (5, 5), 0)
     
-    #Normalise image, so its either black or white
-    distImg = cv2.normalize(distImg, distImg, 0, 1.0, cv2.NORM_MINMAX)
-    distImg = (distImg * 255).astype("uint8")
+    #Apply adaptive threshold
+    threshImg = cv2.adaptiveThreshold(blurImg, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 31, 10)
 
-    cv2.imwrite(filePath, img)
+    cv2.imwrite(filePath, threshImg)
 
-IMG_Preproccess(Path().cwd() / 'uploads' / 'yeet.png')
+IMG_Preproccess(r'C:\Users\Shiven Kothari\Desktop\Shiven\Coding stuff\NEA -ML\Backend\uploads\y1.png')
