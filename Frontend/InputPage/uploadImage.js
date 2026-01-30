@@ -5,6 +5,7 @@ const preview = document.getElementById('file-preview');
 const errorMessages = document.getElementById('error-message');
 const uploadButton = document.getElementById('uploadButton');
 const form = document.getElementById('uploadFile');
+const loadingWheel = document.querySelector(".loading-wheel");
 
 let fileStack = [];
 
@@ -112,8 +113,23 @@ async function uploadFiles() {
   }
 }
 
+
 const response = await fetch("http://127.0.0.1:8000/uploadfile/", {
   method: 'POST'
 });
 const text = await response.text();
 textArea.textContent = text;
+
+responseRecieved = false
+
+window.addEventListener("load", () => {
+  loadingWheel.classList.add("loading-wheel-hidden");
+
+  uploadButton.addEventListener("click", () =>{
+    loadingWheel.removeChild("loadingWheel")
+  })
+})
+
+function terminatePost(){
+  //TERMINATE POST PROCCESS IF AN ERROR OCCURS
+}

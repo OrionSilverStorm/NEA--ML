@@ -13,6 +13,8 @@
     <main>
         <h1>Upload Image</h1>
 
+        <div class="loading-wheel"></div>
+
         <div class="file-upload" id="drop-zone"> <!--Overall div for the file-upload section-->
           
           <form id="uploadFile" method="POST" action="http://localhost:8000/uploadfile/" enctype="multipart/form-data">
@@ -25,8 +27,6 @@
           <div id="file-preview"></div> <!--Creates a DIV where I can append all the file previews-->
           <div id="error-message"></div> <!--Creates a DIV where I can display error messages-->
         </div>
-
-        <div id="progress-bar"></div> <!--Creates a DIV where I can manipulate a progress bar-->
 
         <button id="uploadButton" type="submit" form="uploadFile">Upload ⇪</button>
 

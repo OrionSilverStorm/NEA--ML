@@ -52,11 +52,10 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
             IMG_Preproccess(save_to)
 
             #inferenece
-            #proccessedText = Inference(save_to)
+            #proccessedText = proccessedText + Inference(save_to) + '\n'
 
             #send back to user
-            return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html'), proccessedText
-    
+            return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html'),   proccessedText
 
     except Exception as e:
         return {f"{e} + {file_upload.filename} + {counter}"}
