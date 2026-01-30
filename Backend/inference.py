@@ -13,3 +13,6 @@ def Inference(filePath):
     results = manager.generate(batch)
     #return markdown verison of it
     return results[0].markdown
+
+#if __name__ == '__main__':
+ #   Inference('./uploads/y21.jpg')

@@ -10,17 +10,21 @@ Use FASTAPI as the backend server
 
 #to import FastAPI backend and upload file functionality 
 from fastapi import FastAPI, UploadFile
+#import response types
+from fastapi.responses import RedirectResponse
 #to store files in the server
 from pathlib import Path
 #middleware for different port communication
 from fastapi.middleware.cors import CORSMiddleware
 #img preproccess set up
 from img_preproccessing import IMG_Preproccess
+#Inference set up
+from inference import Inference
 
 #const has the directory that the uplaoded file will go
 UPLOAD_DIR = Path().cwd() / 'uploads'
 
-proccessedText = 'yeet' ##################
+proccessedText = 'yeet'
 
 app = FastAPI() #instantiate the fast api object
 
@@ -48,12 +52,13 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
             IMG_Preproccess(save_to)
 
             #inferenece
+            #proccessedText = Inference(save_to)
+
+            #send back to user
+            return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html'), proccessedText
+    
+
     except Exception as e:
         return {f"{e} + {file_upload.filename} + {counter}"}
-    return {"filenames": [f.filename for f in file_uploads],
-            "Additional":[f"{save_to} + {file_upload.filename} + {counter}"]}   #returns a list of file names of all uploaded files
-
-#######################################
-@app.get("/returnfile/")
-async def Return_text():
-    return proccessedText
+    #return {"filenames": [f.filename for f in file_uploads],
+     #       "Additional":[f"{save_to} + {file_upload.filename} + {counter}"]}   #returns a list of file names of all uploaded files
