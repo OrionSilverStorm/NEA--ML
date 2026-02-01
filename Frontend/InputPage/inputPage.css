@@ -9,7 +9,7 @@ h1{
   font-family: Georgia;
   font-weight: bold;
   margin-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 0px;
 }
 
 .button{
@@ -131,13 +131,13 @@ h1{
 }
 
 .loading-wheel{
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  transition: opacity 0.75s, visibility, 0.75s;
+  transition: opacity 0.75s, visibility 0.75s;
 }
 
 /*to hide the loader when the proccess is done*/

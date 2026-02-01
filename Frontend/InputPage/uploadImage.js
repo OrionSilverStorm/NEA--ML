@@ -113,23 +113,63 @@ async function uploadFiles() {
   }
 }
 
+//checks if the file stack is empty before upload, if so returns an error message so the website doesnt process an empty set of files
+function ValidatePresence() {
+  if (fileStack.length == 0) {
+    ShowError('Please select the files to upload');
+    return false;
+  }
+  else{
+    return true
+  }
+}
 
-const response = await fetch("http://127.0.0.1:8000/uploadfile/", {
-  method: 'POST'
-});
-const text = await response.text();
-textArea.textContent = text;
+//validates files before adding them to the file stack
+async function ValidateFile(file) {
+  const validTypes = ['image/jpeg', 'image/png', 'image/gif'];  //set of acceptable image types
+  const maxSize = 5 * 1024 * 1024 //5 MB limit in bytes
+  const isVaild = true; //base bool so that if nothing is wrong it simply returns true
 
-responseRecieved = false
+  //checks file type
+  if (!validTypes.includes(file.type)) {
+    ShowError(`${file.name} is not a valid file type`);
+    isVaild = false;
+  }
 
-window.addEventListener("load", () => {
-  loadingWheel.classList.add("loading-wheel-hidden");
+  //checks file size
+  if (file.size > maxSize) {
+    ShowError(`${file.name} is too large and exceeds the 5MB limit`);
+    isVaild = false;
+  }
 
-  uploadButton.addEventListener("click", () =>{
-    loadingWheel.removeChild("loadingWheel")
-  })
+  //returns if valid or not
+  return isVaild;
+}
+
+
+function ShowThrobber(){
+  loadingWheel.classList.remove("loading-wheel-hidden")
+}
+
+function HideThrobber(){
+  loadingWheel.classList.add('loading-wheel-hidden');
+}
+
+async function WaitUntillResponse(){
+  //return new Promise(resolve => setTimeout(resolve, 2000));
+  await fetch("http://127.0.0.1:8000/returnfile/");
+}
+
+uploadButton.addEventListener("click", async (e) =>{
+  if (ValidatePresence()){
+    uploadButton.disabled = true; //prevent double clicks
+    ShowThrobber();
+    await setTimeout(WaitUntillResponse(), 10);
+    
+    window.location.href = 'http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html';
+    HideThrobber();
+    uploadButton.disabled = false;
+  }
 })
 
-function terminatePost(){
-  //TERMINATE POST PROCCESS IF AN ERROR OCCURS
-}
+//ALSO DONT NEED THE EVENT LISTENER ONE AT THE TOP

@@ -13,11 +13,11 @@
     <main>
         <h1>Upload Image</h1>
 
-        <div class="loading-wheel"></div>
+        <div class="loading-wheel loading-wheel-hidden"></div>
 
         <div class="file-upload" id="drop-zone"> <!--Overall div for the file-upload section-->
           
-          <form id="uploadFile" method="POST" action="http://localhost:8000/uploadfile/" enctype="multipart/form-data">
+          <form id="uploadFile" method="POST" action="http://127.0.0.1:8000/uploadfile/" enctype="multipart/form-data">
 
           <input id="fileInput" type="file" name="file_uploads" accept="image/*" multiple/> <!--Creates the input form, for multiple image files-->
           <label for="fileInput">Select Images or Drag & Drop</label> <!--Creates a caption for the file input-->
