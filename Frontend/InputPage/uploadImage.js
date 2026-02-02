@@ -30,7 +30,7 @@ fileInput.addEventListener('change', async (e) => {
   await HandleFiles(Array.from(e.target.files)); //same logic from drog and drop, but when it uses file picker
 })
 
-uploadButton.addEventListener('click', ValidatePresence); //assigns the upload button the validatePresence function on click, so if no file is selected, it shows an error
+//uploadButton.addEventListener('click', ValidatePresence); //assigns the upload button the validatePresence function on click, so if no file is selected, it shows an error
 
 //handles the file preprocessing and preview
 async function HandleFiles(files) {

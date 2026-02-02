@@ -37,6 +37,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+isReady = False
+
 #decorator to use the HTTP POST protocol into the defined path in the param
 @app.post("/uploadfile/")
 async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion that will take in a list of files from the frontend
@@ -52,7 +54,10 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
             IMG_Preproccess(save_to)
 
             #inferenece
-            #proccessedText = proccessedText + Inference(save_to) + '\n'    #INFERENCE DO IT LATER FIJWUIFJWEDUIHNFUWEHNFNEUWFN
+            global proccessedText
+            #proccessedText =+ Inference(save_to) + '\n'    #INFERENCE DO IT LATER 
+        global isReady
+        isReady = True
         return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html', status_code=303)
     except Exception as e:
         return RedirectResponse(url='http://127.0.0.1:5500/Frontend/InputPage/inputPage.html', status_code=303) #CHOSE THIS RATHER THAN RETURNING AN ERROR MESSAGE
@@ -62,5 +67,5 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
 
 @app.get("/returnfile/")
 async def Send_back_file():
-    if proccessedText != '':
+    if isReady:
         return proccessedText
