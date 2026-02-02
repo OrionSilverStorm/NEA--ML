@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+
 body{
-    background-color: black;
+    background-color: #8BD7D2;
 }
 
 h1{
@@ -37,18 +39,22 @@ textarea{
 
 .copyB:hover{
     background-color: blueviolet;
+    color: white;
 }
 
 .docxB:hover{
     background-color: blue;
+    color: white;
 }
 
 .pdfB:hover{
     background-color: red;
+    color: white;
 }
 
 .txtFileB:hover{
-    background-color: yellow;
+    background-color: goldenrod; 
+    color: white;
 }
 
 #exportFileName{
@@ -72,16 +78,18 @@ label{
     width: 250px;
     height: 80px;
     border-radius: 15px;
+    border-color: #54DEFD;
     display: block;
     margin: 0 auto;
     margin-top: 30px;
-    background-color: darkgray;
+    background-color: #49C6E5;
+    color: white;
     transition-duration: 0.4s;
     cursor: pointer;
     font-family: Georgia;
 }
 
 #returnButton:hover{
-    background-color: whitesmoke;
-    color: rgb(0, 217, 255);
+    background-color: #54DEFD;
+    color: whitesmoke;
 }

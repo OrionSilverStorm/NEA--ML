@@ -1,17 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap");
+
 h1 {
     color: white;
     text-align: center;
     font-size: 70px;
-    font-family: Georgia;
+    font-family: Comfortaa;
     font-weight: bold;
 }
 
 body{
-    background-color: black;
+    background-color: #8BD7D2;
 }
 
 .box{
-    background-color: dimgray;
+    background-color: #00BD9D;
     width: 100%;
     height: 200px;
     border: none;
@@ -32,13 +34,13 @@ body{
     margin: 4px 2px; /*adds sapce outside the element*/
     transition-duration: 0.4s; /*sets the transition dration when hovering*/
     cursor: pointer; /*changes mouse pointer into hand icon to show its clickable*/
-    background-color: darkgray; /*changes background colour of the button to dark grey*/
-    font-family: Georgia;
+    background-color: #49C6E5; /*changes background colour of the button to dark grey*/
+    font-family: Comfortaa;
 }
 
 .button:hover {
-  background-color: whitesmoke;
-  color: rgb(0, 217, 255);
+  background-color: #54DEFD;
+  color: whitesmoke
 }
 
 .startButton{
@@ -60,7 +62,7 @@ body{
 
 #text-to-toggle{
     color: white;
-    font-family: Georgia;
+    font-family: Comfortaa;
     font-size: 55px;
     text-align: center;
     margin: 4px;
