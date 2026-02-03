@@ -18,10 +18,8 @@
         <div class="file-upload" id="drop-zone"> <!--Overall div for the file-upload section-->
           
           <form id="uploadFile" method="POST" action="http://127.0.0.1:8000/uploadfile/" enctype="multipart/form-data">
-
           <input id="fileInput" type="file" name="file_uploads" accept="image/*" multiple/> <!--Creates the input form, for multiple image files-->
           <label for="fileInput">Select Images or Drag & Drop</label> <!--Creates a caption for the file input-->
-          
           </form>
           
           <div id="file-preview"></div> <!--Creates a DIV where I can append all the file previews-->

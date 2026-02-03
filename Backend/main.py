@@ -55,15 +55,13 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
 
             #inferenece
             global proccessedText
-            #proccessedText =+ Inference(save_to) + '\n'    #INFERENCE DO IT LATER 
+            #proccessedText += Inference(save_to) + '       ********************************************************'    #INFERENCE DO IT LATER 
         global isReady
         isReady = True
         return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html', status_code=303)
     except Exception as e:
-        return RedirectResponse(url='http://127.0.0.1:5500/Frontend/InputPage/inputPage.html', status_code=303) #CHOSE THIS RATHER THAN RETURNING AN ERROR MESSAGE
-        #return {f"{e} + {file_upload.filename} + {counter}"}
-    #return {"filenames": [f.filename for f in file_uploads],
-     #       "Additional":[f"{save_to} + {file_upload.filename} + {counter}"]}   #returns a list of file names of all uploaded files
+        #return RedirectResponse(url='http://127.0.0.1:5500/Frontend/InputPage/inputPage.html', status_code=303) #CHOSE THIS RATHER THAN RETURNING AN ERROR MESSAGE
+        return {f"{e} + {file_upload}"}
 
 @app.get("/returnfile/")
 async def Send_back_file():

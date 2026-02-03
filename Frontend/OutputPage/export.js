@@ -4,6 +4,8 @@ const docButton = document.getElementById("docxB");
 const pdfButton = document.getElementById("pdfB");
 const txtButton = document.getElementById("txtB");
 const fileName = document.getElementById("exportFileName")
+const increaseButton = document.getElementById("zoomIn")
+const decreaseButton = document.getElementById("zoomOut")
 
 //when user updates the text area it updates the content text
 textArea.addEventListener("input", (e) => {
@@ -76,3 +78,24 @@ async function SetTextContent() {
 }
 
 document.addEventListener("load", SetTextContent())
+
+
+function UpdateFontSiz(increment) {
+  let currentSize = getComputedStyle(textArea).fontSize; //use let so I can reassign this var, and reads current actual style being used
+  currentSize = parseInt(currentSize) //converts xpx into just x
+
+  if (currentSize == 0){  //if 0 then return nothing and exit func
+    return;
+  }
+  else{
+    textArea.style.fontSize = `${currentSize + increment}px`  //else change the sizeD
+  }
+}
+
+increaseButton.addEventListener("click", () => {
+  UpdateFontSiz(1);
+})
+
+decreaseButton.addEventListener("click", () => {
+  UpdateFontSiz(-1);
+})
