@@ -24,7 +24,7 @@ from inference import Inference
 #const has the directory that the uplaoded file will go
 UPLOAD_DIR = Path().cwd() / 'uploads'
 
-proccessedText = 'yeet'
+proccessedText = ''
 
 app = FastAPI() #instantiate the fast api object
 
