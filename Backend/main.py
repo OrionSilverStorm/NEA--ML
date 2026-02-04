@@ -42,6 +42,12 @@ isReady = False
 #decorator to use the HTTP POST protocol into the defined path in the param
 @app.post("/uploadfile/")
 async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion that will take in a list of files from the frontend
+    '''
+    Docstring for Create_Upload_File:
+    Recieves a list of files from the frontend, and then for every file in the inputed list: it saves it to the uploads folder; preproccesses them in preperation for the OCR model; passes them into the OCR model and appends the returned value to the proccessedText; once every file has been processed it sets isReady to true; else if any error occurs it returns the exception
+    :param file_uploads: a list of files uploaded from the frontend
+    :type file_uploads: list[UploadFile]
+    '''
     counter = 0
     try:
         for file_upload in file_uploads:    #iterate over each file to save it to our directory
@@ -55,7 +61,7 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
 
             #inferenece
             global proccessedText
-            #proccessedText += Inference(save_to) + '       ********************************************************'    #INFERENCE DO IT LATER 
+            #proccessedText += Inference(save_to) + '                     *****************************************************************' #INFERENCE DO IT LATER 
         global isReady
         isReady = True
         return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html', status_code=303)
@@ -65,5 +71,9 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
 
 @app.get("/returnfile/")
 async def Send_back_file():
+    '''
+    Docstring for Send_back_file:
+    After Create_Upload_File has finished processing files and isReady is set to true, return the final proccessed text back to the frontend 
+    '''
     if isReady:
         return proccessedText

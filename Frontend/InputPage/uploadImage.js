@@ -7,6 +7,7 @@ const uploadButton = document.getElementById('uploadButton');
 const form = document.getElementById('uploadFile');
 const loadingWheel = document.querySelector(".loading-wheel");
 
+
 let fileStack = [];
 
 // Enable drag and drop functionality with visual feedback
@@ -23,7 +24,7 @@ dropZone.addEventListener('drop', async (e) => { //when item is dropped it will 
   e.preventDefault(); //prevents the broswer from accidently opening the file 
   dropZone.classList.remove('dragover'); //removes the dragover class property as the user has dragged and dropped the file
   await HandleFiles(Array.from(e.dataTransfer.files)); // calls the dropped files, converts it into a js array and sends it to HandleFiles func, await makes it so that everything waits for the file upload to finish before executing anything else
-  uploadFiles();
+  UploadFiles();
 })
 
 //when user uses file picker
@@ -107,15 +108,14 @@ function ValidatePresence() {
 }
 
 
-function uploadFiles() {
-  const fileInput = document.getElementById('fileInput');
-  //create a DataTransfer object
+function UploadFiles() {
+  //init a data transfer object
   const dataTransfer = new DataTransfer(); 
-  // Add all files from fileStack to DataTransfer
+  //add all files from fileStack to it
   for (const file of fileStack) {
     dataTransfer.items.add(file);
   }
-  //set the file input's files to our DataTransfer files
+  //set the file input's files to the files in the data transfer object
   fileInput.files = dataTransfer.files;
 }
 
