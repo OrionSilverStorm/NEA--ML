@@ -48,14 +48,12 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
     :param file_uploads: a list of files uploaded from the frontend
     :type file_uploads: list[UploadFile]
     '''
-    counter = 0
     try:
         for file_upload in file_uploads:    #iterate over each file to save it to our directory
             data = await file_upload.read() #will read the file and store its contents in data, use await to make function wait for the file to be read
             save_to = Path().cwd() / 'uploads' / file_upload.filename #save a file in the predefined directory with the files name
             with open(save_to, 'wb') as f: #write to the files bytes
                 f.write(data)   #write the read data, so we have completley stored this file in our backend
-                counter += 1
             #img preproccess
             IMG_Preproccess(save_to)
 
@@ -64,7 +62,9 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
             #proccessedText += f'{file_upload.filename}' + Inference(save_to) + '                     *****************************************************************' #INFERENCE DO IT LATER 
         global isReady
         isReady = True
+        
         return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html', status_code=303)
+        
     except Exception as e:
         #return RedirectResponse(url='http://127.0.0.1:5500/Frontend/InputPage/inputPage.html', status_code=303) #CHOSE THIS RATHER THAN RETURNING AN ERROR MESSAGE
         return {f"{e} + {file_upload}"}
@@ -77,3 +77,4 @@ async def Send_back_file():
     '''
     if isReady:
         return proccessedText
+  
