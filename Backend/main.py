@@ -61,7 +61,7 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
 
             #inferenece
             global proccessedText
-            #proccessedText += Inference(save_to) + '                     *****************************************************************' #INFERENCE DO IT LATER 
+            #proccessedText += f'{file_upload.filename}' + Inference(save_to) + '                     *****************************************************************' #INFERENCE DO IT LATER 
         global isReady
         isReady = True
         return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html', status_code=303)
