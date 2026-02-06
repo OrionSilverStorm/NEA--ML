@@ -133,7 +133,7 @@ function ValidatePresence() {
 //validates files before adding them to the file stack
 async function ValidateFile(file) {
   const validTypes = ['image/jpeg', 'image/png', 'image/gif'];  //set of acceptable image types
-  const maxSize = 10 * 1024 * 1024 //5 MB limit in bytes
+  const maxSize = 20 * 1024 * 1024 //5 MB limit in bytes
   const isVaild = true; //base bool so that if nothing is wrong it simply returns true
 
   //checks file type
@@ -174,7 +174,7 @@ uploadButton.addEventListener("click", async () =>{
     //uploadButton.disabled = true; //prevent double clicks
     ShowThrobber();
     //WaitUntillResponse();
-    
+
     //location.assign('http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html');
     //HideThrobber();
     //uploadButton.disabled = false;
