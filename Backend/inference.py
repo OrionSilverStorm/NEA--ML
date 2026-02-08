@@ -16,6 +16,20 @@ def Inference(filePath):
     batch = [BatchInputItem(image=img, prompt_type="ocr_layout")]
     #generate result
     results = manager.generate(batch)
+
+    del manager
+    del img
+    del batch
+    del results
+    
+    import gc #garbage collector
+    gc.collect()
+    
+    import torch
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        torch.cuda.synchronize()  #wait for everything to be complete
+
     #return markdown verison of it
     return results[0].markdown
 

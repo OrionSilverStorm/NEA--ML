@@ -82,13 +82,16 @@ document.addEventListener("load", SetTextContent())
 
 function UpdateFontSiz(increment) {
   let currentSize = getComputedStyle(textArea).fontSize; //use let so I can reassign this var, and reads current actual style being used
-  currentSize = parseInt(currentSize) //converts xpx into just x
+  currentSize = parseInt(currentSize); //converts xpx into just x
 
-  if (currentSize == 0){  //if 0 then return nothing and exit func
-    return;
+  if (currentSize < 1){  //if less than to one keep it at one, extreme case
+    textArea.style.fontSize = '1px';
+  }
+  else if (currentSize > 100){ //if greater to 100 keep it at 100, extreme case
+    textArea.style.fontSize = '100px'
   }
   else{
-    textArea.style.fontSize = `${currentSize + increment}px`  //else change the sizeD
+    textArea.style.fontSize = `${currentSize + increment}px`;  //else change the sizeD
   }
 }
 
