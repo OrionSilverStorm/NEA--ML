@@ -6,7 +6,13 @@ import cv2
 #Normalise the image
 
 def IMG_Preproccess(filePath):
-    #load the imagez``
+    '''
+    Docstring for IMG_Preproccess:
+    To preproccess uploaded images to refine them before the OCR model starts proccessing them
+    :param filePath: Pass in the file path to the img to be proccessed
+    '''
+    
+    #load the image
     img = cv2.imread(filePath)
 
     #greyscale it

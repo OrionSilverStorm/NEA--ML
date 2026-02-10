@@ -9,7 +9,7 @@ h1{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Georgia;
+    font-family: Comfortaa;
 }
 
 textarea{
@@ -18,7 +18,7 @@ textarea{
     display: block;
     margin: 0 auto;
     margin-bottom: 25px;
-    font-family: Georgia;
+    font-family: Comfortaa;
 }
 
 .export-buttons-container{
@@ -30,7 +30,7 @@ textarea{
 .button{
     transition-duration: 0.4s;
     cursor: pointer;
-    font-family: Georgia;
+    font-family: Comfortaa;
     width: 100px;
     height: 40px;
     border-radius: 5px;
@@ -68,7 +68,7 @@ textarea{
 label{
     margin-top: 20px;
     color: white;
-    font-family: Georgia;
+    font-family: Comfortaa;
     display: flex;
     align-items: center;
     justify-content: center; 
@@ -86,10 +86,24 @@ label{
     color: white;
     transition-duration: 0.4s;
     cursor: pointer;
-    font-family: Georgia;
+    font-family: Comfortaa;
 }
 
 #returnButton:hover{
     background-color: #54DEFD;
     color: whitesmoke;
+}
+
+
+.zoom-buttons{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+#zoomLabel{
+    font-family: Comfortaa;
+    font-size: 20px;
 }

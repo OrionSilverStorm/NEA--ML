@@ -19,12 +19,14 @@ from fastapi.middleware.cors import CORSMiddleware
 #img preproccess set up
 from img_preproccessing import IMG_Preproccess
 #Inference set up
-from inference import Inference
+#from inference import Inference
+import uvicorn
+import torch
 
 #const has the directory that the uplaoded file will go
 UPLOAD_DIR = Path().cwd() / 'uploads'
 
-proccessedText = 'yeet'
+proccessedText = ''
 
 app = FastAPI() #instantiate the fast api object
 
@@ -39,33 +41,63 @@ app.add_middleware(
 
 isReady = False
 
+from transformers import pipeline
+
+# Initialize pipeline
+pipe = pipeline("image-text-to-text", model="datalab-to/chandra", device="cpu")
+
+# Or disable CUDA entirely
+torch.cuda.is_available = lambda: False
+
 #decorator to use the HTTP POST protocol into the defined path in the param
 @app.post("/uploadfile/")
 async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion that will take in a list of files from the frontend
-    counter = 0
+    '''
+    Docstring for Create_Upload_File:
+    Recieves a list of files from the frontend, and then for every file in the inputed list: it saves it to the uploads folder; preproccesses them in preperation for the OCR model; passes them into the OCR model and appends the returned value to the proccessedText; once every file has been processed it sets isReady to true; else if any error occurs it returns the exception
+    :param file_uploads: a list of files uploaded from the frontend
+    :type file_uploads: list[UploadFile]
+    '''
     try:
         for file_upload in file_uploads:    #iterate over each file to save it to our directory
             data = await file_upload.read() #will read the file and store its contents in data, use await to make function wait for the file to be read
             save_to = Path().cwd() / 'uploads' / file_upload.filename #save a file in the predefined directory with the files name
             with open(save_to, 'wb') as f: #write to the files bytes
                 f.write(data)   #write the read data, so we have completley stored this file in our backend
-                counter += 1
             #img preproccess
             IMG_Preproccess(save_to)
 
             #inferenece
             global proccessedText
-            #proccessedText =+ Inference(save_to) + '\n'    #INFERENCE DO IT LATER 
+
+            messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "image"},
+                    {"type": "text", "text": "What animal is on the candy?"}
+                ]
+            },
+            ]
+
+            proccessedText += f'{file_upload.filename}' + pipe(image=save_to, text=messages)[0]["generated_text"] #Inference(save_to, manager) + '                     *****************************************************************' #INFERENCE DO IT LATER 
         global isReady
         isReady = True
+        
         return RedirectResponse(url='http://127.0.0.1:5500/Frontend/OutputPage/outputPage.html', status_code=303)
+        
     except Exception as e:
-        return RedirectResponse(url='http://127.0.0.1:5500/Frontend/InputPage/inputPage.html', status_code=303) #CHOSE THIS RATHER THAN RETURNING AN ERROR MESSAGE
-        #return {f"{e} + {file_upload.filename} + {counter}"}
-    #return {"filenames": [f.filename for f in file_uploads],
-     #       "Additional":[f"{save_to} + {file_upload.filename} + {counter}"]}   #returns a list of file names of all uploaded files
+        #return RedirectResponse(url='http://127.0.0.1:5500/Frontend/InputPage/inputPage.html', status_code=303) #CHOSE THIS RATHER THAN RETURNING AN ERROR MESSAGE
+        return {f"{e} + {file_upload}"}
 
 @app.get("/returnfile/")
 async def Send_back_file():
+    '''
+    Docstring for Send_back_file:
+    After Create_Upload_File has finished processing files and isReady is set to true, return the final proccessed text back to the frontend 
+    '''
     if isReady:
         return proccessedText
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

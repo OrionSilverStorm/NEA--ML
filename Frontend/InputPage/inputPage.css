@@ -8,7 +8,7 @@ h1{
   color: white;
   text-align: center;
   font-size: 90px;
-  font-family: Georgia;
+  font-family: Comfortaa;
   font-weight: bold;
   margin-top: 50px;
   margin-bottom: 0px;
@@ -24,7 +24,7 @@ h1{
   transition-duration: 0.4s;
   cursor: pointer; 
   background-color: #49C6E5; 
-  font-family: Georgia;
+  font-family: Comfortaa;
 }
 
 .button:hover {
@@ -40,7 +40,7 @@ h1{
 
 .file-upload{
   width: 50%;
-  font-family: Georgia;
+  font-family: Comfortaa;
   font-size: 25px;
   display: block;
   padding: 20px;
@@ -99,7 +99,7 @@ h1{
 
 #file-preview span{
   /*for the image text displayed below the text*/
-  font-family: Georgia;
+  font-family: Comfortaa;
   color: white;
   font-size: 20px;
   display: flex;
@@ -123,7 +123,7 @@ h1{
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 50px;
-  font-family: Georgia;
+  font-family: Comfortaa;
 
   margin: 100px auto;
 }
@@ -144,8 +144,11 @@ h1{
 
 /*to hide the loader when the proccess is done*/
 .loading-wheel-hidden{
-  opacity: 0;
   visibility: hidden;
+}
+
+.loading-wheel-visible{
+  visibility: visible;
 }
 
 /*after the throbber is initalised this stuff is added so that the keyframes can be used to animate it*/
