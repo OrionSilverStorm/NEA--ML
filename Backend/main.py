@@ -19,7 +19,9 @@ from fastapi.middleware.cors import CORSMiddleware
 #img preproccess set up
 from img_preproccessing import IMG_Preproccess
 #Inference set up
-from inference import Inference
+#from inference import Inference
+import uvicorn
+import torch
 
 #const has the directory that the uplaoded file will go
 UPLOAD_DIR = Path().cwd() / 'uploads'
@@ -38,6 +40,14 @@ app.add_middleware(
 )
 
 isReady = False
+
+from transformers import pipeline
+
+# Initialize pipeline
+pipe = pipeline("image-text-to-text", model="datalab-to/chandra", device="cpu")
+
+# Or disable CUDA entirely
+torch.cuda.is_available = lambda: False
 
 #decorator to use the HTTP POST protocol into the defined path in the param
 @app.post("/uploadfile/")
@@ -59,7 +69,18 @@ async def Create_Upload_File(file_uploads: list[UploadFile]):  #async funtion th
 
             #inferenece
             global proccessedText
-            #proccessedText += f'{file_upload.filename}' + Inference(save_to) + '                     *****************************************************************' #INFERENCE DO IT LATER 
+
+            messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "image"},
+                    {"type": "text", "text": "What animal is on the candy?"}
+                ]
+            },
+            ]
+
+            proccessedText += f'{file_upload.filename}' + pipe(image=save_to, text=messages)[0]["generated_text"] #Inference(save_to, manager) + '                     *****************************************************************' #INFERENCE DO IT LATER 
         global isReady
         isReady = True
         
@@ -77,4 +98,6 @@ async def Send_back_file():
     '''
     if isReady:
         return proccessedText
-  
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
