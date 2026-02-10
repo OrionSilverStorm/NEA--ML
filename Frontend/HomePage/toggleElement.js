@@ -1,7 +1,7 @@
 const divContainer = document.querySelector("#text-to-toggle"); //assigning the html div into this div container to manipulate it
 let isClicked = true;
 
-let toggleDisplay = function(){
+let ToggleDisplay = function(){
     if (isClicked){
         divContainer.style.display = "block";
         isClicked = false;
