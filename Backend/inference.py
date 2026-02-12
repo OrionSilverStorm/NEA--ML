@@ -28,7 +28,7 @@ def Inference(filePath):
     import torch
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
-        torch.cuda.synchronize()  #wait for everything to be complete
+        torch.cuda.synchronize()  
 
     #return markdown verison of it
     return results[0].markdown

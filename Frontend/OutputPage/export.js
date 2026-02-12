@@ -74,11 +74,18 @@ const ExportAsTxt = () =>{  //use arrow func as we want to "return" the file to 
 async function SetTextContent() {
   const response = await fetch("http://127.0.0.1:8000/returnfile/");
   const text = await response.text();
-  textArea.textContent = text;
+
+  let processedText = text.replace(/\\n/g, '\n'); //use regex to replace every backslash n with \n
+
+  if (processedText == 'null' || processedText == 'Please Wait, We are proccessing your image(s)...'){
+    textArea.textContent = 'Please Wait, We are proccessing your image(s)...'  
+  }
+  else{
+    textArea.textContent = processedText;
+  }
 }
 
 document.addEventListener("load", SetTextContent())
-
 
 function UpdateFontSiz(increment) {
   let currentSize = getComputedStyle(textArea).fontSize; //use let so I can reassign this var, and reads current actual style being used
