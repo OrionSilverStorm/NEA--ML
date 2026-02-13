@@ -50,6 +50,7 @@ client = genai.Client(api_key=API_KEY)
 def Gemini_API_Call(img): #pass in pillow opened img
     global isReady, proccessedText
 
+    proccessedText = 'Please Wait, We are proccessing your image(s)...'
     #API call to gemini
     response = client.models.generate_content(
     model="gemma-3-27b-it",
