@@ -1,12 +1,12 @@
-# Dependencies
+# Dependencies and Instructions to run
 
-- pip install chandra-ocr
-- pip install opencv-python
 - pip install fastapi[standard]
-- pip uninstall torch torchvision torchaudio
-- pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu126
-
-# Stuff to run:
-
-- Run inference.py seperately, just call the func at the bottom of the script and set the file path to be the y21.jpg file in uploads
-- Then uncomment the inference in main.py and run it from the website; u just need to use liveserver and go live, and then you just have to init the uvicorn server (fastapi run main.py --reload)
+- pip install uvicorn
+- pip install pillow
+- pip install google-genai
+- pip install pathlib
+- Install live server extension on vs code for debugging 
+- Put in a free Gemini api key to the const in the main file (just go to the google AI devspace or lab, sign in with google and you can get a free one)
+- Be in the backend directory
+- Click Go Live at the bottom right of VS code while your in a HTML file
+- In terminal type: uvicorn main:app --reload, wait till it says application start up
